@@ -1,0 +1,100 @@
+<script setup lang="ts">
+import BorderBox13 from "@/components/datav/border-box-13";
+import { borderBox8 } from '@jiaminghi/data-view'
+
+
+const props = withDefaults(
+  defineProps<{
+    // 标题
+    title: number | string;
+  }>(),
+  {
+    title: "",
+  }
+);
+</script>
+
+<template>
+  <BorderBox13>
+    <div class="slot_div">
+      <span>{{title}}</span>
+    </div>
+    <!-- <div class="item_title" v-if="title !== ''">
+      <div class="zuo"></div>
+      <span class="title-inner"> &nbsp;&nbsp;{{ title }}&nbsp;&nbsp; </span>
+      <div class="you"></div>
+    </div> -->
+    <div
+      :class="title !== '' ? 'item_title_content' : 'item_title_content_def'"
+    >
+      <slot></slot></div>
+  </BorderBox13>
+</template>
+
+<style scoped lang="scss">
+$item-title-height: 38px;
+$item_title_content-height: calc(100% - 30px);
+.bg_border {
+ 
+}
+.slot_div {
+  
+    background-image: url('../../assets/img/my/bt.png');
+    width: 100%;
+    height: 60px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    span {
+      display: inline;
+      position: absolute;
+      left: 12%;
+      top: 50%;
+      font-family: Source Han Sans SC;
+      font-weight: 600;
+      font-size: 20px;
+      color: #EDFAFF;
+      transform: translateY(-50%)
+    }
+  }
+.item_title {
+  height: $item-title-height;
+  line-height: $item-title-height;
+  width: 100%;
+  color: #31abe3;
+  text-align: center;
+  // background: linear-gradient(to right, transparent, #0f0756, transparent);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .title-inner {
+    font-weight: 900;
+    letter-spacing: 2px;
+    background: linear-gradient(
+      92deg,
+      #0072ff 0%,
+      #00eaff 48.8525390625%,
+      #01aaff 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+:deep(.dv-border-box-content)  {
+    box-sizing: border-box;
+    padding: 6px 2px 0px;
+  }
+
+.item_title_content {
+  height: $item_title_content-height;
+}
+
+.item_title_content_def {
+  width: 100%;
+  height: 100%;
+}
+</style>
